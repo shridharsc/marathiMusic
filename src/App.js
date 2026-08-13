@@ -1,13 +1,6 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import "./App.css";
 
-// videoId = the part after "v=" in a YouTube URL, e.g.
-// https://www.youtube.com/watch?v=fZ5Z1pn3HTs -> "fZ5Z1pn3HTs"
-//
-// The 3 below are verified working YouTube videos for the actual songs.
-// Replace the "REPLACE_ME_..." ids with real video ids you've checked
-// yourself (open the YouTube link, confirm it's the right song, copy
-// the id from the URL).
 const songs = [
   {
     id: 1,
@@ -109,7 +102,6 @@ const songs = [
   }
 ];
 
-// Loads the YouTube IFrame API script once and resolves when ready.
 function loadYouTubeAPI() {
   return new Promise((resolve) => {
     if (window.YT && window.YT.Player) {
@@ -135,6 +127,8 @@ function App() {
   const playerRef = useRef(null);
   const playerInstanceRef = useRef(null);
   const progressIntervalRef = useRef(null);
+  const isFirstRender = useRef(true);
+  const loadedIndexRef = useRef(null);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -162,7 +156,15 @@ function App() {
     }, 500);
   }, []);
 
-  // Initialize the YouTube player once.
+  const nextSong = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % songs.length);
+  }, []);
+
+  const previousSong = () => {
+    setCurrentIndex((prev) => (prev === 0 ? songs.length - 1 : prev - 1));
+  };
+
+  // Initialize YouTube API Player
   useEffect(() => {
     let cancelled = false;
 
@@ -178,18 +180,19 @@ function App() {
         events: {
           onReady: () => {
             setIsReady(true);
-            setDuration(playerInstanceRef.current.getDuration());
+            if (playerInstanceRef.current.getDuration) {
+              setDuration(playerInstanceRef.current.getDuration());
+            }
           },
           onStateChange: (event) => {
-            // 0 = ended, 1 = playing, 2 = paused
-            if (event.data === 1) {
+            if (event.data === 1) { // Playing
               setIsPlaying(true);
               setDuration(playerInstanceRef.current.getDuration());
               startProgressInterval();
-            } else if (event.data === 2) {
+            } else if (event.data === 2) { // Paused
               setIsPlaying(false);
               clearProgressInterval();
-            } else if (event.data === 0) {
+            } else if (event.data === 0) { // Ended
               setIsPlaying(false);
               clearProgressInterval();
               nextSong();
@@ -210,14 +213,9 @@ function App() {
         playerInstanceRef.current.destroy();
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [startProgressInterval, nextSong]);
 
-  // Load a new video whenever the current song changes.
-  // Track the index we've already loaded so this doesn't re-fire on
-  // every isReady/isPlaying change - only on an actual song change.
-  const loadedIndexRef = useRef(null);
-
+  // Load/Cue video when index or readiness changes
   useEffect(() => {
     if (!isReady || !playerInstanceRef.current) return;
     if (loadedIndexRef.current === currentIndex) return;
@@ -227,17 +225,23 @@ function App() {
     setCurrentTime(0);
     setDuration(0);
 
-    // loadVideoById (unlike cueVideoById) always starts playback from
-    // the given startSeconds, which guarantees the next song begins
-    // at 0 instead of carrying over any leftover position/buffering
-    // state from the previous video.
-    playerInstanceRef.current.loadVideoById({
-      videoId: currentSong.videoId,
-      startSeconds: 0,
-    });
-    setIsPlaying(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentIndex, isReady]);
+    if (isFirstRender.current) {
+      // Cue paused on initial page visit (avoids browser autoplay block)
+      playerInstanceRef.current.cueVideoById({
+        videoId: currentSong.videoId,
+        startSeconds: 0,
+      });
+      setIsPlaying(false);
+      isFirstRender.current = false;
+    } else {
+      // Auto-play when user clicks Next / Previous
+      playerInstanceRef.current.loadVideoById({
+        videoId: currentSong.videoId,
+        startSeconds: 0,
+      });
+      setIsPlaying(true);
+    }
+  }, [currentIndex, isReady, currentSong.videoId]);
 
   const togglePlayPause = () => {
     const player = playerInstanceRef.current;
@@ -248,14 +252,6 @@ function App() {
     } else {
       player.playVideo();
     }
-  };
-
-  const nextSong = () => {
-    setCurrentIndex((prev) => (prev + 1) % songs.length);
-  };
-
-  const previousSong = () => {
-    setCurrentIndex((prev) => (prev === 0 ? songs.length - 1 : prev - 1));
   };
 
   const handleSeek = (event) => {
@@ -283,74 +279,64 @@ function App() {
       <div className="background"></div>
       <div className="overlay"></div>
 
-      {/* <div className="clock">
-        10:58 pm
-        <span></span>
-      </div> */}
-
-      {/* <div className="online">
-        <span className="online-dot"></span>
-        <strong>34</strong>
-        <span>online</span>
-      </div> */}
-
-      {/* Hidden YouTube player - audio plays, no visible video */}
+      {/* Hidden YouTube iframe */}
       <div style={{ display: "none" }}>
         <div ref={playerRef}></div>
       </div>
 
       <div className="player">
-  <div className={`album ${isPlaying ? "playing" : ""}`}>
-  <img src={currentSong.image} alt={currentSong.title} />
-</div>
+        {/* Continuous 360deg Rotation Class applied when playing */}
+        <div className={`album ${isPlaying ? "playing" : ""}`}>
+          <img src={currentSong.image} alt={currentSong.title} />
+        </div>
 
-  <div className="song-details">
-    <h2>{currentSong.title}</h2>
-    <p>{currentSong.artist}</p>
+        <div className="song-details">
+          <h2>{currentSong.title}</h2>
+          <p>{currentSong.artist}</p>
 
-    {loadError && (
-      <p style={{ color: "#ff8080", fontSize: "0.85em" }}>
-        This track couldn't load — check the video id for "{currentSong.title}".
-      </p>
-    )}
+          {loadError && (
+            <p style={{ color: "#ff8080", fontSize: "0.85em" }}>
+              This track couldn't load — check the video id for "{currentSong.title}".
+            </p>
+          )}
 
-    <input
-      className="progress-input"
-      type="range"
-      min="0"
-      max={duration || 0}
-      value={currentTime}
-      onChange={handleSeek}
-      style={{
-        background: `linear-gradient(to right, #ffffff ${progressPercent}%, rgba(255, 255, 255, 0.25) ${progressPercent}%)`,
-      }}
-    />
+          <input
+            className="progress-input"
+            type="range"
+            min="0"
+            max={duration || 0}
+            value={currentTime}
+            onChange={handleSeek}
+            style={{
+              background: `linear-gradient(to right, #ffffff ${progressPercent}%, rgba(255, 255, 255, 0.25) ${progressPercent}%)`,
+            }}
+          />
 
-    <div className="time">
-      <span>{formatTime(currentTime)}</span>
-      <span>{formatTime(duration)}</span>
-    </div>
-  </div>
+          <div className="time">
+            <span>{formatTime(currentTime)}</span>
+            <span>{formatTime(duration)}</span>
+          </div>
+        </div>
 
-  <div className="controls">
-    <button className="previous" onClick={previousSong} title="Previous">
-      |◀
-    </button>
+        <div className="controls">
+          <button className="previous" onClick={previousSong} title="Previous">
+            |◀
+          </button>
 
-    <button
-      className="play"
-      onClick={togglePlayPause}
-      title={isPlaying ? "Pause" : "Play"}
-      disabled={!isReady}
-    >
-      {isPlaying ? "❚❚" : "▶"}
-    </button>
+          <button
+            className="play"
+            onClick={togglePlayPause}
+            title={isPlaying ? "Pause" : "Play"}
+            disabled={!isReady}
+          >
+            {isPlaying ? "❚❚" : "▶"}
+          </button>
 
-    <button className="next" onClick={nextSong} title="Next">
-      ▶|
-    </button>
-  </div>
-</div>
+          <button className="next" onClick={nextSong} title="Next">
+            ▶|
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
