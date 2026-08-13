@@ -300,57 +300,57 @@ function App() {
       </div>
 
       <div className="player">
-        <div className="album">
-          <img src={currentSong.image} alt={currentSong.title} />
-        </div>
+  <div className={`album ${isPlaying ? "playing" : ""}`}>
+  <img src={currentSong.image} alt={currentSong.title} />
+</div>
 
-        <div className="song-details">
-          <h2>{currentSong.title}</h2>
-          <p>{currentSong.artist}</p>
+  <div className="song-details">
+    <h2>{currentSong.title}</h2>
+    <p>{currentSong.artist}</p>
 
-          {loadError && (
-            <p style={{ color: "#ff8080", fontSize: "0.85em" }}>
-              This track couldn't load — check the video id for "{currentSong.title}".
-            </p>
-          )}
+    {loadError && (
+      <p style={{ color: "#ff8080", fontSize: "0.85em" }}>
+        This track couldn't load — check the video id for "{currentSong.title}".
+      </p>
+    )}
 
-          <input
-            className="progress-input"
-            type="range"
-            min="0"
-            max={duration || 0}
-            value={currentTime}
-            onChange={handleSeek}
-            style={{
-              background: `linear-gradient(to right, #ffffff ${progressPercent}%, rgba(255, 255, 255, 0.25) ${progressPercent}%)`,
-            }}
-          />
+    <input
+      className="progress-input"
+      type="range"
+      min="0"
+      max={duration || 0}
+      value={currentTime}
+      onChange={handleSeek}
+      style={{
+        background: `linear-gradient(to right, #ffffff ${progressPercent}%, rgba(255, 255, 255, 0.25) ${progressPercent}%)`,
+      }}
+    />
 
-          <div className="time">
-            <span>{formatTime(currentTime)}</span>
-            <span>{formatTime(duration)}</span>
-          </div>
-        </div>
+    <div className="time">
+      <span>{formatTime(currentTime)}</span>
+      <span>{formatTime(duration)}</span>
+    </div>
+  </div>
 
-        <div className="controls">
-          <button className="previous" onClick={previousSong} title="Previous">
-            |◀
-          </button>
+  <div className="controls">
+    <button className="previous" onClick={previousSong} title="Previous">
+      |◀
+    </button>
 
-          <button
-            className="play"
-            onClick={togglePlayPause}
-            title={isPlaying ? "Pause" : "Play"}
-            disabled={!isReady}
-          >
-            {isPlaying ? "❚❚" : "▶"}
-          </button>
+    <button
+      className="play"
+      onClick={togglePlayPause}
+      title={isPlaying ? "Pause" : "Play"}
+      disabled={!isReady}
+    >
+      {isPlaying ? "❚❚" : "▶"}
+    </button>
 
-          <button className="next" onClick={nextSong} title="Next">
-            ▶|
-          </button>
-        </div>
-      </div>
+    <button className="next" onClick={nextSong} title="Next">
+      ▶|
+    </button>
+  </div>
+</div>
     </div>
   );
 }
