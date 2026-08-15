@@ -27,14 +27,14 @@ const songs = [
     id: 4,
     title: "झिंगाट",
     artist: "अजय-अतुल",
-    image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhd9bPg-0vb1__6jouNLAIFJro_F9jZE7ITjN_uADPV40tU50qKzCiXCHOxhq2nbPmQttZu4wsySBCEJYKGOe_DcC6TqqczQIKJbCRmJpPTzoie_z5vKpq7V8RazW04DMulxfa57g8UPSI/s1600/Akash+Thosar+Image-Sairat+%2528%25E0%25A4%25B8%25E0%25A5%2588%25E0%25A4%25B0%25E0%25A4%25BE%25E0%25A4%259F%2529+Cast+and+Crew.jpg",
+    image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhd9bPg-0vb1__6jouNLAIFJro_F9jZE7ITjN_uADPV40tU50qKzCiXCHOxhq2nbPmQttZu4wsySBCEJYKGOe_DcC6TqqczQIKJbCRmJpPTzoie_z5vKpq7V8RazW04DMulxfa57g8UPSI/s1600/Akash+Thosar+Image-Sairat+%2528%25E0%25A4%25B8%25E0%25A5%2588%25E0%25A4%25B0%25E0%25A4%25BA%25E0%25A4%259F%2529+Cast+and+Crew.jpg",
     videoId: "2gcsgfzqN8k",
   },
   {
     id: 5,
     title: "सैराट झालं जी",
     artist: "चिन्मयी श्रीपाद आणि अजय गोगावले",
-    image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhd9bPg-0vb1__6jouNLAIFJro_F9jZE7ITjN_uADPV40tU50qKzCiXCHOxhq2nbPmQttZu4wsySBCEJYKGOe_DcC6TqqczQIKJbCRmJpPTzoie_z5vKpq7V8RazW04DMulxfa57g8UPSI/s1600/Akash+Thosar+Image-Sairat+%2528%25E0%25A4%25B8%25E0%25A5%2588%25E0%25A4%25B0%25E0%25A4%25BE%25E0%25A4%259F%2529+Cast+and+Crew.jpg",
+    image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhd9bPg-0vb1__6jouNLAIFJro_F9jZE7ITjN_uADPV40tU50qKzCiXCHOxhq2nbPmQttZu4wsySBCEJYKGOe_DcC6TqqczQIKJbCRmJpPTzoie_z5vKpq7V8RazW04DMulxfa57g8UPSI/s1600/Akash+Thosar+Image-Sairat+%2528%25E0%25A4%25B8%25E0%25A5%2588%25E0%25A4%25B0%25E0%25A4%25BA%25E0%25A4%259F%2529+Cast+and+Crew.jpg",
     videoId: "AQ-P5RR7r40",
   },
   {
@@ -45,17 +45,10 @@ const songs = [
     videoId: "mW67u_hWiSo",
   },
   {
-    id: 7,
-    title: "सूर निरागस हो",
-    artist: "शंकर महादेवन",
-    image: "http://www.impawards.com/intl/india/2015/posters/katyar_kaljat_ghusali_ver6_xlg.jpg",
-    videoId: "IUzRhOJScuc",
-  },
-  {
     id: 8,
     title: "याड लागलं",
     artist: "अजय गोगावले",
-    image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhd9bPg-0vb1__6jouNLAIFJro_F9jZE7ITjN_uADPV40tU50qKzCiXCHOxhq2nbPmQttZu4wsySBCEJYKGOe_DcC6TqqczQIKJbCRmJpPTzoie_z5vKpq7V8RazW04DMulxfa57g8UPSI/s1600/Akash+Thosar+Image-Sairat+%2528%25E0%25A4%25B8%25E0%25A5%2588%25E0%25A4%25B0%25E0%25A4%25BE%25E0%25A4%259F%2529+Cast+and+Crew.jpg",
+    image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhd9bPg-0vb1__6jouNLAIFJro_F9jZE7ITjN_uADPV40tU50qKzCiXCHOxhq2nbPmQttZu4wsySBCEJYKGOe_DcC6TqqczQIKJbCRmJpPTzoie_z5vKpq7V8RazW04DMulxfa57g8UPSI/s1600/Akash+Thosar+Image-Sairat+%2528%25E0%25A4%25B8%25E0%25A5%2588%25E0%25A4%25B0%25E0%25A4%25BA%25E0%25A4%259F%2529+Cast+and+Crew.jpg",
     videoId: "8uP0F3-tiP0",
   },
   {
@@ -80,13 +73,6 @@ const songs = [
     videoId: "2KaDL9TSja0",
   },
   {
-    id: 12,
-    title: "वाजले की बारा",
-    artist: "बेला शेंडे",
-    image: "https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/natarang-et00004089-24-03-2017-17-59-29.jpg",
-    videoId: "yO2V9sl6bhg",
-  },
-  {
     id: 13,
     title: "मला वेड लागले",
     artist: "स्वप्नील बांदोडकर आणि केतकी माटेगावकर",
@@ -99,6 +85,56 @@ const songs = [
     artist: "हर्षवर्धन वावरे आणि आनंदी जोशी",
     image: "https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/daagdi-chaawl-et00033100-01-09-2015-05-43-16.jpg",
     videoId: "JHraK6Z8Ty8",
+  },
+  /* --- NEW EMBEDDABLE LOVE SONGS ADDED BELOW --- */
+{
+    id: 15,
+    title: "टिक टिक वाजते डोक्यात",
+    artist: "सोनू निगम आणि सायली पंकज",
+    image: "https://images.ottplay.com/images/duniyadari-poster.jpg",
+    videoId: "5f1-YKtSQuc",
+  },
+  {
+    id: 16,
+    title: "मन उधाण वाऱ्याचे",
+    artist: "शंकर महादेवन",
+    image: "https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/aga-bai-arechya-et00000452-24-03-2017-19-15-46.jpg",
+    videoId: "ssD0TNuMtIQ",
+  },
+  {
+    id: 17,
+    title: "परी म्हणू की सुंदरा",
+    artist: "अवधूत गुप्ते आणि स्वप्नील बांदोडकर",
+    image: "https://images.indianexpress.com/2022/05/Amruta-Khanvilkar.jpg",
+    videoId: "lZMpnnehaxQ",
+  },
+  {
+    id: 18,
+    title: "तांबडी चामडी",
+    artist: "क्रेटेक्स आणि श्रेयस",
+    image: "https://c.saavncdn.com/839/Taambdi-Chaamdi-Marathi-2024-20240822161247-500x500.jpg",
+    videoId: "kmjeMrjOjFA",
+  },
+  {
+    id: 21,
+    title: "राधा ही बावरी",
+    artist: "स्वप्नील बांदोडकर",
+    image: "https://c.saavncdn.com/835/Radha-Hi-Bawari-Marathi-2010-500x500.jpg",
+    videoId: "UHCvbNgL15k",
+  },
+  {
+    id: 23,
+    title: "माउली माउली",
+    artist: "अजय गोगावले",
+    image: "https://c.saavncdn.com/393/Lai-Bhaari-Marathi-2014-500x500.jpg",
+    videoId: "gWHfhYW99Wg",
+  },
+  {
+    id: 24,
+    title: "गालावर खळी",
+    artist: "स्वप्नील बांदोडकर",
+    image: "https://c.saavncdn.com/768/Duniyadari-Marathi-2013-500x500.jpg",
+    videoId: "EwXxMBL1ZIM",
   }
 ];
 
@@ -137,7 +173,43 @@ function App() {
   const [isReady, setIsReady] = useState(false);
   const [loadError, setLoadError] = useState(false);
 
+  // Live Clock & Online Listeners State
+  const [liveTime, setLiveTime] = useState("");
+  const [onlineCount, setOnlineCount] = useState(34);
+
   const currentSong = songs[currentIndex];
+
+  // Live Clock Interval
+  useEffect(() => {
+    const updateClock = () => {
+      const now = new Date();
+      setLiveTime(
+        now.toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        }).toLowerCase()
+      );
+    };
+
+    updateClock();
+    const timer = setInterval(updateClock, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+  const interval = setInterval(() => {
+    setOnlineCount((prevCount) => {
+      // Randomly change count by -2, -1, 0, +1, or +2
+      const change = Math.floor(Math.random() * 5) - 2;
+      const newCount = prevCount + change;
+      // Keep listener count within a realistic range (e.g., between 25 and 60)
+      return Math.max(25, Math.min(60, newCount));
+    });
+  }, 4000); // Updates every 4 seconds
+
+  return () => clearInterval(interval);
+}, []);
 
   const clearProgressInterval = () => {
     if (progressIntervalRef.current) {
@@ -215,7 +287,7 @@ function App() {
     };
   }, [startProgressInterval, nextSong]);
 
-  // Load/Cue video when index or readiness changes
+  // Load/Cue video logic
   useEffect(() => {
     if (!isReady || !playerInstanceRef.current) return;
     if (loadedIndexRef.current === currentIndex) return;
@@ -226,7 +298,7 @@ function App() {
     setDuration(0);
 
     if (isFirstRender.current) {
-      // Cue paused on initial page visit (avoids browser autoplay block)
+      // Cue paused on first visit so track does NOT auto-play
       playerInstanceRef.current.cueVideoById({
         videoId: currentSong.videoId,
         startSeconds: 0,
@@ -234,7 +306,7 @@ function App() {
       setIsPlaying(false);
       isFirstRender.current = false;
     } else {
-      // Auto-play when user clicks Next / Previous
+      // Auto-play when switching songs via user action
       playerInstanceRef.current.loadVideoById({
         videoId: currentSong.videoId,
         startSeconds: 0,
@@ -279,13 +351,26 @@ function App() {
       <div className="background"></div>
       <div className="overlay"></div>
 
-      {/* Hidden YouTube iframe */}
+      {/* Top Left - Live Clock */}
+      <div className="clock">
+        {liveTime || "10:58 pm"}
+        <span></span>
+      </div>
+
+      {/* Top Center - Live Listeners Counter */}
+      <div className="online">
+        <span className="online-dot"></span>
+        <strong>{onlineCount}</strong>
+        <span>online</span>
+      </div>
+
+      {/* Hidden YouTube player frame */}
       <div style={{ display: "none" }}>
         <div ref={playerRef}></div>
       </div>
 
       <div className="player">
-        {/* Continuous 360deg Rotation Class applied when playing */}
+        {/* Spins continuously 360deg when playing */}
         <div className={`album ${isPlaying ? "playing" : ""}`}>
           <img src={currentSong.image} alt={currentSong.title} />
         </div>
